@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modo Claro e Escuro</title>
+    <style>
+        body {
+            transition: background-color 0.5s, color 0.5s;
+            background-color: #ffffff;
+            color: #000000;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            position: relative; /* Adicionado para posicionar os ícones */
+            width: 100px; /* Largura fixa para o contêiner dos ícones */
+        }
+
+        button {
+            border: none;
+            background: none;
+            font-size: 2rem;
+            cursor: pointer;
+            outline: none;
+            transition: transform 0.1s ease;
+            position: relative; /* Adicionado para os ícones se moverem em relação ao botão */
+        }
+
+        button:active {
+            transform: scale(0.95); /* Efeito de clique */
+        }
+
+        .dark-mode {
+            background-color: #333333;
+            color: #ffffff;
+        }
+
+        .icon-moon, .icon-sun {
+            position: absolute; /* Para permitir a movimentação dos ícones */
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            width: 100%; /* Para garantir que ocupem o mesmo espaço */
+            text-align: center; /* Centraliza os ícones */
+        }
+
+        .icon-moon {
+            opacity: 0; /* Inicialmente escondido */
+            transform: translateX(20px); /* Inicialmente deslocado para a direita */
+        }
+
+        .dark-mode .icon-sun {
+            opacity: 0; /* Esconde o ícone do sol */
+            transform: translateX(-20px); /* Move para a esquerda */
+        }
+
+        .dark-mode .icon-moon {
+            opacity: 1; /* Mostra o ícone da lua */
+            transform: translateX(0); /* Retorna para a posição original */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button id="theme-toggle" aria-label="Trocar tema">
+            <span id="icon" class="icon-sun">☀️</span>
+            <span class="icon-moon">🌙</span>
+        </button>
+    </div>
+    <script>
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const iconSun = document.querySelector('.icon-sun');
+        const iconMoon = document.querySelector('.icon-moon');
+
+        // Verifica o tema armazenado e aplica
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+
+        themeToggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+
+            // Alterna o ícone
+            if (document.body.classList.contains('dark-mode')) {
+                iconSun.style.opacity = '0';
+                iconMoon.style.opacity = '1';
+                localStorage.setItem('theme', 'dark'); // Salva o tema como escuro
+            } else {
+                iconSun.style.opacity = '1';
+                iconMoon.style.opacity = '0';
+                localStorage.setItem('theme', 'light'); // Salva o tema como claro
+            }
+        });
+    </script>
+</body>
+</html>
