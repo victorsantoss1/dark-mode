@@ -19,8 +19,8 @@
 
         .container {
             text-align: center;
-            position: relative; /* Adicionado para posicionar os ícones */
-            width: 100px; /* Largura fixa para o contêiner dos ícones */
+            position: relative; 
+            width: 100px; 
         }
 
         button {
@@ -30,11 +30,11 @@
             cursor: pointer;
             outline: none;
             transition: transform 0.1s ease;
-            position: relative; /* Adicionado para os ícones se moverem em relação ao botão */
+            position: relative; 
         }
 
         button:active {
-            transform: scale(0.95); /* Efeito de clique */
+            transform: scale(0.95);
         }
 
         .dark-mode {
@@ -43,25 +43,25 @@
         }
 
         .icon-moon, .icon-sun {
-            position: absolute; /* Para permitir a movimentação dos ícones */
+            position: absolute; 
             transition: transform 0.5s ease, opacity 0.5s ease;
-            width: 100%; /* Para garantir que ocupem o mesmo espaço */
-            text-align: center; /* Centraliza os ícones */
+            width: 100%; 
+            text-align: center; 
         }
 
         .icon-moon {
-            opacity: 0; /* Inicialmente escondido */
-            transform: translateX(20px); /* Inicialmente deslocado para a direita */
+            opacity: 0; 
+            transform: translateX(20px); 
         }
 
         .dark-mode .icon-sun {
-            opacity: 0; /* Esconde o ícone do sol */
-            transform: translateX(-20px); /* Move para a esquerda */
+            opacity: 0; 
+            transform: translateX(-20px); 
         }
 
         .dark-mode .icon-moon {
-            opacity: 1; /* Mostra o ícone da lua */
-            transform: translateX(0); /* Retorna para a posição original */
+            opacity: 1; 
+            transform: translateX(0); 
         }
     </style>
 </head>
@@ -77,7 +77,7 @@
         const iconSun = document.querySelector('.icon-sun');
         const iconMoon = document.querySelector('.icon-moon');
 
-        // Verifica o tema armazenado e aplica
+       
         const currentTheme = localStorage.getItem('theme');
         if (currentTheme === 'dark') {
             document.body.classList.add('dark-mode');
@@ -86,15 +86,15 @@
         themeToggleButton.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
 
-            // Alterna o ícone
+            
             if (document.body.classList.contains('dark-mode')) {
                 iconSun.style.opacity = '0';
                 iconMoon.style.opacity = '1';
-                localStorage.setItem('theme', 'dark'); // Salva o tema como escuro
+                localStorage.setItem('theme', 'dark');
             } else {
                 iconSun.style.opacity = '1';
                 iconMoon.style.opacity = '0';
-                localStorage.setItem('theme', 'light'); // Salva o tema como claro
+                localStorage.setItem('theme', 'light'); 
             }
         });
     </script>
